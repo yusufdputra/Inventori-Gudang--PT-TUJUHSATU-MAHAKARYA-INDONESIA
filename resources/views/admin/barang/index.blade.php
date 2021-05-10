@@ -5,10 +5,26 @@
   <div class="col-12">
     <div class="card-box table-responsive">
       @role('admin')
-      <div class="align-items-center">
 
-        <a href="#tambah-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary m-l-10 waves-light  mb-5">Tambah</a>
+      <div class="form-row">
+        <div class="form-group ">
+          <a href="#tambah-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary m-l-10 waves-light  ">Tambah</a>
+        </div>
+        <div class="form-group col-md-4">
 
+          <div class="input-group">
+            <div class="input-group-append">
+              <span class="input-group-text">Sorting</span>
+            </div>
+            <select required class="form-control " onchange="sorting()" id="sort_kategori" name="sort_kategori">
+              <option value="" selected>Pilih..</option>
+              @foreach ($kategori as $key=>$value)
+              <option value="{{$value->nama}}">{{strtoupper($value->nama)}}</option>
+              @endforeach
+            </select>
+
+          </div>
+        </div>
       </div>
 
       @if(\Session::has('alert'))
@@ -33,6 +49,7 @@
             <th>Suplier</th>
             <th>Harga (Rp.)</th>
             <th>Kategori</th>
+            <th>Tanggal Perubahan</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -44,6 +61,16 @@
             <td>{{$value['suplier']}}</td>
             <td>{{$value['harga']}}</td>
             <td>{{$value['nama_kategori']}}</td>
+            <td>
+
+              @if($value['updated_at'] != null)
+              {{date('d-M-Y, H:m', strtotime($value['updated_at']))}} WIB
+              @else
+              {{date('d-M-Y, H:m', strtotime($value['created_at']))}} WIB
+              @endif
+            </td>
+
+            
             <td>
               <a href="#edit-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-nama="{{$value['nama']}}" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
               <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-edit"></i></a>
@@ -134,7 +161,7 @@
       <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('barang.update')}}" method="POST">
         {{csrf_field()}}
         <input type="hidden" name="id" id="edit_id">
-        
+
         <div class="form-group">
           <label>Nama barang</label>
           <div class="col-xs-12">
@@ -220,7 +247,7 @@
   $('.modal_edit').click(function() {
     var id = $(this).data('id');
     $('#edit_id').val(id)
-   
+
     $.ajax({
       url: '{{url("barang/edit")}}/' + id,
       type: 'GET',
@@ -238,12 +265,27 @@
         toastr.error('Gagal memanggil data! ')
       }
     })
-    
+
   });
 
   $('.hapus').click(function() {
     var id = $(this).data('id');
     $('#id_hapus').val(id);
   });
+
+  // sorting 
+  function sorting() {
+    const sort_kategori = document.getElementById('sort_kategori').value
+    $('#datatable').DataTable()
+
+    function filterData() {
+      $('#datatable').DataTable().search(
+        sort_kategori
+      ).draw()
+    }
+    filterData()
+  }
 </script>
+
+
 @endsection
