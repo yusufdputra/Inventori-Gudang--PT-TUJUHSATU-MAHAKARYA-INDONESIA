@@ -4,13 +4,12 @@
 <div class="clearfix"></div>
 <div class="wrapper-page">
     <div class="text-center">
-        <a href="index.html" class="logo"><span>SI<span>AP</span></span></a>
-        <h5 class="text-muted m-t-0 font-600">Sistem Informasi Agenda Pegawai Dinas Perhubungan <br>
-            Kabupaten Kampar </h5>
+        <a href="index.html" class="logo"><span>Sistem <span>Informasi</span></span></a>
+        <h5 class="text-muted m-t-0 font-600">PT. Sejahtera Mandiri Pekanbaru</h5>
     </div>
     <div class="m-t-40 card-box">
         <div class="text-center">
-                <img src="{{asset('adminto/images/brand/kampar.png')}}" height="100px" alt="">
+                <img src="{{asset('adminto/images/brand/sejahtera.png')}}" height="100px" alt="">
                 <h4 class="text-uppercase font-bold m-b-0">Sign In</h4>
             </div>
             <div class="p-20">

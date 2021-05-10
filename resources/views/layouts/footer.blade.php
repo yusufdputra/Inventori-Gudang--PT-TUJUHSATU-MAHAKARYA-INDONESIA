@@ -53,6 +53,8 @@
 
 <!-- select2 -->
 <script src="{{asset('adminto/plugins/select2/js/select2.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('adminto/plugins/switchery/switchery.min.js')}}"></script>
+<script src="{{asset('adminto/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
 <script type="text/javascript">
     // Select2
     $(".select2").select2();
@@ -72,11 +74,13 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        // Select2
+        $(".select2").select2();
         jQuery('#datepicker-autoclose').datepicker({
-            
+
             format: "DD, dd-MM-yyyy",
             autoclose: true,
-            todayHighlight: true, 
+            todayHighlight: true,
         });
         // Default Datatable
         $('#datatable').DataTable();

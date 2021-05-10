@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
             
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('12345'),
-            'nomor_hp' => '082385786666'
+            'password' => bcrypt('admin12345'),
+            // 'nomor_hp' => '082385786666'
         ]);
 
         $admin->assignRole('admin');

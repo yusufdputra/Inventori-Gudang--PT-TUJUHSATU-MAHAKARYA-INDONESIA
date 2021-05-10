@@ -34,14 +34,14 @@
         </li>
         @role('admin')
         <li>
-          <a href="{{route ('pegawai.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Data Pegawai </span> </a>
+          <a href="{{route ('kategori.index')}}" class="waves-effect"><i class="mdi mdi-group"></i> <span> Kategori </span> </a>
         </li>
 
         <li>
-          <a href="{{route ('agenda.index')}}" class="waves-effect"><i class="mdi mdi-view-agenda"></i> <span> Agenda </span> </a>
+          <a href="{{route ('barang.index')}}" class="waves-effect"><i class="mdi mdi-package-variant-closed"></i> <span> Barang </span> </a>
         </li>
         <li>
-          <a href="{{route ('bidang.index')}}" class="waves-effect"><i class="mdi mdi-cube"></i> <span> Bidang </span> </a>
+          <a href="{{route ('rab.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> RAB </span> </a>
         </li>
 
         @endrole
@@ -49,7 +49,7 @@
         @role("pegawai")
 
         <li>
-          <a href="{{route ('agenda.index')}}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Agenda </span> </a>
+          <a href="{{route ('agenda.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Agenda </span> </a>
         </li>
 
         @endrole
@@ -85,7 +85,7 @@
   </div> <!-- content -->
 
   <footer class="footer text-right">
-    2021 - Dinas Perhubungan Kampar Team
+    2021 - PT. Sejahtera Mandiri Pekanbaru
   </footer>
 
 </div>

@@ -1,9 +1,10 @@
 <?php
-
-use App\Http\Controllers\AgendaController;
-use App\Http\Controllers\BidangController;
+use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\RabController;
+use App\Http\Controllers\RabTempController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,30 +28,41 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // admin
 
 Route::group(['middleware' => ['role:admin']], function () {
-    // kelola pegawai
-    Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
-    Route::POST('/pegawai/tambah', [PegawaiController::class, 'tambah'])->name('pegawai.tambah');
-    Route::get('/pegawai/edit/{id}', [PegawaiController::class, 'edit'])->name('pegawai/edit');
-    Route::POST('/pegawai/edit', [PegawaiController::class, 'update'])->name('pegawai.update');
+    // kelola kategori
+    Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+    Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::POST('/kategori/edit', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::POST('/kategori/hapus/', [KategoriController::class, 'hapus'])->name('kategori.hapus');
 
-    // kelola agenda
-    Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda.index');
-    Route::get('/agenda/tambah', [AgendaController::class, 'tambah'])->name('agenda.tambah');
-    Route::get('/agenda/edit/{id}', [AgendaController::class, 'edit'])->name('agenda.edit');
-    Route::post('/agenda/update', [AgendaController::class, 'update'])->name('agenda.update');
-    Route::post('/agenda/store', [AgendaController::class, 'store'])->name('agenda.store');
-    Route::get('/agenda/hapus/{id}', [AgendaController::class, 'hapus'])->name('agenda.hapus');
-    
-    // kelola bidang
-    Route::get('/bidang', [BidangController::class, 'index'])->name('bidang.index');
-    Route::post('/bidang/store', [BidangController::class, 'store'])->name('bidang.store');
-    Route::post('/bidang/update', [BidangController::class, 'update'])->name('bidang.update');
+    // kelola barang
+    Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
+    Route::post('/barang/store', [BarangController::class, 'store'])->name('barang.store');
+    Route::get('/barang/edit/{id}', [BarangController::class, 'edit'])->name('barang/edit');
+    Route::POST('/barang/update/', [BarangController::class, 'update'])->name('barang.update');
+    Route::POST('/barang/hapus/', [BarangController::class, 'hapus'])->name('barang.hapus');
+
+    // kelola rab
+    Route::get('/rab', [RabController::class, 'index'])->name('rab.index');
+    Route::get('/rab/edit/{id}', [RabController::class, 'edit'])->name('rab.edit');
+    Route::get('/rab/cetak/{id}', [RabController::class, 'cetak'])->name('rab.cetak');
+    Route::POST('/rab/delete/', [RabController::class, 'hapus'])->name('rab.delete');
+
+    // kelola edit rab
+    Route::POST('/rab/edit/selesai/', [RabController::class, 'editSelesai'])->name('rab.edit.selesai');
+    Route::POST('/rab/edit/update/', [RabController::class, 'editUpdate'])->name('rab.edit.update');
+    Route::post('/rab/edit/store', [RabController::class, 'editStore'])->name('rab.edit.store');
+    Route::POST('/rab/hapus/', [RabController::class, 'editHapus'])->name('rab.edit.hapus');
+
+    // kelola rab temp
+    Route::get('/rabtemp', [RabTempController::class, 'index'])->name('rabtemp.index');
+    Route::post('/rabtemp/store', [RabTempController::class, 'store'])->name('rabtemp.store');
+    Route::get('/rabtemp/edit/{id}', [RabTempController::class, 'edit'])->name('rabtemp/edit');
+    Route::POST('/rabtemp/update/', [RabTempController::class, 'update'])->name('rabtemp.update');
+    Route::POST('/rabtemp/hapus/', [RabTempController::class, 'hapus'])->name('rabtemp.hapus');
+    Route::POST('/rabtemp/selesai/', [RabTempController::class, 'selesai'])->name('rabtemp.selesai');
+
+    // kelola ajax
+    Route::get('/GetBarangByKategori/{id}', [AjaxController::class, 'GetBarangByKategori'])->name('GetBarangByKategori');
 
 
-});
-
-Route::group(['middleware' => ['role:admin|pegawai']], function () {
-    Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda.index');
-    
-    Route::get('/agenda/today', [AgendaController::class, 'getToday'])->name('agenda.today');
 });
