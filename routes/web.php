@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RabController;
 use App\Http\Controllers\RabTempController;
+use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // admin
 
 Route::group(['middleware' => ['role:admin']], function () {
+    // user management
+    Route::get('/user/{jenis}', [UserManagementController::class, 'index'])->name('user.index');
+    Route::post('/user/store', [UserManagementController::class, 'store'])->name('user.store');
+    Route::post('/user/edit', [UserManagementController::class, 'edit'])->name('user.edit');
+    Route::post('/user/update', [UserManagementController::class, 'update'])->name('user.update');
+    Route::post('/user/hapus', [UserManagementController::class, 'hapus'])->name('user.hapus');
+    Route::post('/user/resetpw', [UserManagementController::class, 'resetpw'])->name('user.resetpw');
     // kelola kategori
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
     Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kategori.store');

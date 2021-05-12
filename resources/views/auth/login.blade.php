@@ -4,7 +4,7 @@
 <div class="clearfix"></div>
 <div class="wrapper-page">
     <div class="text-center">
-        <a href="index.html" class="logo"><span>Sistem <span>Informasi</span></span></a>
+        <a href="index.html" class="logo"><span>SI Warehouse <span>Terpadu</span></span></a>
         <h5 class="text-muted m-t-0 font-600">PT. Sejahtera Mandiri Pekanbaru</h5>
     </div>
     <div class="m-t-40 card-box">
@@ -19,9 +19,9 @@
                     <div class="form-group">
                         <div class="col-xs-12">
 
-                            <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="username" placeholder="Username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="off" autofocus>
 
-                            @error('email')
+                            @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

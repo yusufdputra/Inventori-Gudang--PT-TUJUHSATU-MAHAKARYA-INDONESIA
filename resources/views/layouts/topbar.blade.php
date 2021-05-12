@@ -3,7 +3,7 @@
 
 <!-- LOGO -->
 <div class="topbar-left">
-    <a href="{{'/'}}" class="logo"><img src="{{asset('adminto/images/brand/logo.png')}}" width="50px" alt="">SIRAB</span><i class="mdi mdi-layers"></i></a>
+    <a href="{{'/'}}" class="logo"><img src="{{asset('adminto/images/brand/logo.png')}}" width="50px" alt="">SIWATER</span><i class="mdi mdi-layers"></i></a>
 </div>
 
 <!-- Button mobile view to collapse sidebar menu -->

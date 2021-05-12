@@ -7,7 +7,7 @@
         <img src="{{asset('adminto/images/users/avatar-1.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
         <div class="user-status online"><i class="mdi mdi-adjust"></i></div>
       </div>
-      <h5><a href="#"> {{ Auth::user()->name }}</a> </h5>
+      <h5><a href="#"> {{ Auth::user()->nama }}</a> </h5>
       <ul class="list-inline">
 
 
@@ -33,6 +33,13 @@
           <a href="{{('/')}}" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
         </li>
         @role('admin')
+        <li class="has_sub">
+          <a href="javascript:void(0);" class="waves-effect"><i class=" mdi mdi-account-multiple"></i> <span> Data User </span> <span class="fa menu-arrow"></span></a>
+          <ul class=" list-unstyled">
+            <li><a href="{{route ('user.index', 'pimpinan')}}">Pimpinan</a></li>
+            <li><a href="{{route ('user.index', 'pegawai')}}">Pegawai</a></li>
+          </ul>
+        </li>
         <li>
           <a href="{{route ('kategori.index')}}" class="waves-effect"><i class="mdi mdi-group"></i> <span> Kategori </span> </a>
         </li>

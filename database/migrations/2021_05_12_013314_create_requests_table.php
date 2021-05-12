@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRabsTable extends Migration
+class CreateRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRabsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rabs', function (Blueprint $table) {
+        Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('id_rab_temp');
+            $table->bigInteger('id_barang');
+            $table->bigInteger('stok');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
@@ -29,6 +29,6 @@ class CreateRabsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rabs');
+        Schema::dropIfExists('requests');
     }
 }
