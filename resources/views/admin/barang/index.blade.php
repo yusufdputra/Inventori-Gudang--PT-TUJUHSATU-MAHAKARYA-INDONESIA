@@ -10,22 +10,10 @@
         <div class="form-group ">
           <a href="#tambah-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary m-l-10 waves-light  ">Tambah</a>
         </div>
-        <div class="form-group col-md-4">
 
-          <div class="input-group">
-            <div class="input-group-append">
-              <span class="input-group-text">Sorting</span>
-            </div>
-            <select required class="form-control " onchange="sorting()" id="sort_kategori" name="sort_kategori">
-              <option value="" selected>Pilih..</option>
-              @foreach ($kategori as $key=>$value)
-              <option value="{{$value->nama}}">{{strtoupper($value->nama)}}</option>
-              @endforeach
-            </select>
-
-          </div>
-        </div>
       </div>
+
+      @endrole
 
       @if(\Session::has('alert'))
       <div class="alert alert-danger">
@@ -39,16 +27,15 @@
       </div>
       @endif
 
-      @endrole
+
       <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
         <thead>
           <tr>
             <th>No.</th>
             <th>Nama barang</th>
-            <th>Suplier</th>
-            <th>Harga (Rp.)</th>
-            <th>Kategori</th>
+            <th>Stok</th>
+            <th>Satuan</th>
             <th>Tanggal Perubahan</th>
             <th>Aksi</th>
           </tr>
@@ -57,10 +44,9 @@
           @foreach ($barang AS $key=>$value)
           <tr>
             <td>{{$key+1}}</td>
-            <td>{{$value['nama']}}</td>
-            <td>{{$value['suplier']}}</td>
-            <td>{{$value['harga']}}</td>
-            <td>{{$value['nama_kategori']}}</td>
+            <td>{{$value->nama}}</td>
+            <td>{{$value->stok}}</td>
+            <td>{{$value->satuan}}</td>
             <td>
 
               @if($value['updated_at'] != null)
@@ -70,7 +56,7 @@
               @endif
             </td>
 
-            
+
             <td>
               <a href="#edit-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-nama="{{$value['nama']}}" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
               <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-edit"></i></a>
@@ -107,28 +93,19 @@
         </div>
 
         <div class="form-group">
-          <label for="">Kategori Barang</label>
+          <label for="">Stok</label>
           <div class="col-xs-12">
-            <select required class="form-control" name="kategori">
+            <input class="form-control" type="number" min="0" autocomplete="off" name="stok" required="" placeholder="Stok Barang">
+          </div>
+        </div>
 
-              @foreach ($kategori as $key=>$value)
-              <option value="{{$value->id}}">{{$value->nama}}</option>
-              @endforeach
+        <div class="form-group">
+          <label for="">Satuan</label>
+          <div class="col-xs-12">
+            <select required class="form-control" name="satuan">
+              <option value="pcs">Pcs</option>
+              <option value="lusin">Lusin</option>
             </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="">Nama Suplier</label>
-          <div class="col-xs-12">
-            <input class="form-control" type="text" autocomplete="off" name="suplier" required="" placeholder="Nama Suplier">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="">Harga Barang</label>
-          <div class="col-xs-12">
-            <input class="form-control" min="0" type="number" autocomplete="off" name="harga" required="" placeholder="Harga Barang">
           </div>
         </div>
 
@@ -170,28 +147,19 @@
         </div>
 
         <div class="form-group">
-          <label for="">Kategori Barang</label>
+          <label for="">Stok</label>
           <div class="col-xs-12">
-            <select required class="form-control" id="edit_kategori" name="kategori">
+            <input class="form-control" type="number" min="0" id="edit_stok" autocomplete="off" name="stok" required="" placeholder="Stok Barang">
+          </div>
+        </div>
 
-              @foreach ($kategori as $key=>$value)
-              <option value="{{$value->id}}">{{$value->nama}}</option>
-              @endforeach
+        <div class="form-group">
+          <label for="">Satuan</label>
+          <div class="col-xs-12">
+            <select required class="form-control" id="edit_satuan" name="satuan">
+              <option value="pcs">Pcs</option>
+              <option value="lusin">Lusin</option>
             </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="">Nama Suplier</label>
-          <div class="col-xs-12">
-            <input class="form-control" type="text" id="edit_suplier" autocomplete="off" name="suplier" required="" placeholder="Nama Suplier">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="">Harga Barang</label>
-          <div class="col-xs-12">
-            <input class="form-control" min="0" type="number" id="edit_harga" autocomplete="off" name="harga" required="" placeholder="Harga Barang">
           </div>
         </div>
 
@@ -256,9 +224,8 @@
       success: function(data) {
         $('#edit_id').val(id)
         $('#edit_nama').val(data['nama'])
-        $('#edit_suplier').val(data['suplier'])
-        $('#edit_harga').val(data['harga'])
-        $('#edit_kategori').val(data['id_kategori'])
+        $('#edit_stok').val(data['stok'])
+        $('#edit_satuan').val(data['satuan'])
 
       },
       error: function(data) {
@@ -272,19 +239,6 @@
     var id = $(this).data('id');
     $('#id_hapus').val(id);
   });
-
-  // sorting 
-  function sorting() {
-    const sort_kategori = document.getElementById('sort_kategori').value
-    $('#datatable').DataTable()
-
-    function filterData() {
-      $('#datatable').DataTable().search(
-        sort_kategori
-      ).draw()
-    }
-    filterData()
-  }
 </script>
 
 

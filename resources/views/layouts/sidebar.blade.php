@@ -33,6 +33,7 @@
           <a href="{{('/')}}" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
         </li>
         @role('admin')
+
         <li class="has_sub">
           <a href="javascript:void(0);" class="waves-effect"><i class=" mdi mdi-account-multiple"></i> <span> Data User </span> <span class="fa menu-arrow"></span></a>
           <ul class=" list-unstyled">
@@ -40,13 +41,19 @@
             <li><a href="{{route ('user.index', 'pegawai')}}">Pegawai</a></li>
           </ul>
         </li>
-        <li>
-          <a href="{{route ('kategori.index')}}" class="waves-effect"><i class="mdi mdi-group"></i> <span> Kategori </span> </a>
-        </li>
 
         <li>
           <a href="{{route ('barang.index')}}" class="waves-effect"><i class="mdi mdi-package-variant-closed"></i> <span> Barang </span> </a>
         </li>
+
+        <li class="has_sub">
+          <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cube-send"></i> <span> Transaksi </span> <span class="fa menu-arrow"></span></a>
+          <ul class=" list-unstyled">
+            <li><a href="{{route ('masuk.index')}}">Masuk</a></li>
+            <li><a href="{{route ('keluar.index')}}">Keluar</a></li>
+          </ul>
+        </li>
+
         <li>
           <a href="{{route ('rab.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> RAB </span> </a>
         </li>

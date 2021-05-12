@@ -1,11 +1,14 @@
 <?php
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RabController;
 use App\Http\Controllers\RabTempController;
 use App\Http\Controllers\UserManagementController;
+use App\Models\Barang;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,18 +39,22 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/user/update', [UserManagementController::class, 'update'])->name('user.update');
     Route::post('/user/hapus', [UserManagementController::class, 'hapus'])->name('user.hapus');
     Route::post('/user/resetpw', [UserManagementController::class, 'resetpw'])->name('user.resetpw');
+
+     // kelola barang
+     Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
+     Route::post('/barang/store', [BarangController::class, 'store'])->name('barang.store');
+     Route::get('/barang/edit/{id}', [BarangController::class, 'edit'])->name('barang/edit');
+     Route::POST('/barang/update/', [BarangController::class, 'update'])->name('barang.update');
+     Route::POST('/barang/hapus/', [BarangController::class, 'hapus'])->name('barang.hapus');
+
+   
     // kelola kategori
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
     Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
     Route::POST('/kategori/edit', [KategoriController::class, 'update'])->name('kategori.update');
     Route::POST('/kategori/hapus/', [KategoriController::class, 'hapus'])->name('kategori.hapus');
 
-    // kelola barang
-    Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
-    Route::post('/barang/store', [BarangController::class, 'store'])->name('barang.store');
-    Route::get('/barang/edit/{id}', [BarangController::class, 'edit'])->name('barang/edit');
-    Route::POST('/barang/update/', [BarangController::class, 'update'])->name('barang.update');
-    Route::POST('/barang/hapus/', [BarangController::class, 'hapus'])->name('barang.hapus');
+   
 
     // kelola rab
     Route::get('/rab', [RabController::class, 'index'])->name('rab.index');
@@ -74,3 +81,25 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 });
+
+Route::group(['middleware' => ['role:admin|pegawai']], function () {
+
+    // barang masuk
+    Route::get('/masuk', [BarangMasukController::class, 'index'])->name('masuk.index');
+    Route::post('masuk/store', [BarangMasukController::class, 'store'])->name('masuk.store');
+    Route::get('/masuk/edit/{id}', [BarangMasukController::class, 'edit'])->name('masuk/edit');
+    Route::POST('/masuk/update/', [BarangMasukController::class, 'update'])->name('masuk.update');
+    Route::POST('/masuk/hapus/', [BarangMasukController::class, 'hapus'])->name('masuk.hapus');
+
+    // barang keluar
+    Route::get('/keluar', [BarangKeluarController::class, 'index'])->name('keluar.index');
+    Route::post('keluar/store', [BarangKeluarController::class, 'store'])->name('keluar.store');
+    Route::get('/keluar/edit/{id}', [BarangKeluarController::class, 'edit'])->name('keluar/edit');
+    Route::POST('/keluar/update/', [BarangKeluarController::class, 'update'])->name('keluar.update');
+    Route::POST('/keluar/hapus/', [BarangKeluarController::class, 'hapus'])->name('keluar.hapus');
+
+    // ajax
+    
+});
+
+Route::get('/getBarangById/{id}', [BarangController::class, 'getBarangById'])->name('getBarangById');

@@ -13,12 +13,14 @@ class Barang extends Model
     protected $table = 'barangs';
     protected $dates = ['deleted_at'];
 
-    public function rabtemp()
+    public function barangmasuk()
     {
-        return $this->belongsToMany(RabTemp::class);
+        return $this->belongsToMany(BarangMasuk::class);
     }
-    public function kategori()
+
+    public function barangkeluar()
     {
-        return $this->hasMany(Kategori::class, 'id', 'id_kategori');
+        return $this->belongsToMany(BarangKeluar::class);
     }
+    
 }
