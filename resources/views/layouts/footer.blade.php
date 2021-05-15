@@ -45,6 +45,7 @@
 
 <script src="{{asset('adminto/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 
+
 <!-- time picker -->
 <script src="{{asset('adminto/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 
@@ -55,6 +56,7 @@
 <script src="{{asset('adminto/plugins/select2/js/select2.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('adminto/plugins/switchery/switchery.min.js')}}"></script>
 <script src="{{asset('adminto/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
+
 <script type="text/javascript">
     // Select2
     $(".select2").select2();
@@ -76,12 +78,17 @@
     $(document).ready(function() {
         // Select2
         $(".select2").select2();
-        jQuery('#datepicker-autoclose').datepicker({
-
-            format: "DD, dd-MM-yyyy",
+        // Date Picker
+        jQuery('#datepicker').datepicker();
+        jQuery('.datepicker-autoclose').datepicker({
             autoclose: true,
-            todayHighlight: true,
+            format: 'dd/M/yyyy',
+            todayHighlight: true
         });
+
+
+
+
         // Default Datatable
         $('#datatable').DataTable();
 
@@ -90,6 +97,8 @@
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf']
         });
+
+
 
         jQuery('.timepicker2').timepicker({
             showMeridian: false,

@@ -3,6 +3,7 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\CetakController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RabController;
@@ -108,9 +109,10 @@ Route::group(['middleware' => ['role:admin|pegawai']], function () {
     Route::POST('/restok/hapus/', [RestokController::class, 'hapus'])->name('restok.hapus');
 });
 
-Route::group(['middleware' => ['role:pegawai']], function () {  
+Route::group(['middleware' => ['role:pegawai|admin|pimpinan']], function () {  
     
-
+    // kelola cetak
+    Route::post('/cetak/cetak', [CetakController::class, 'cetak'])->name('cetak.cetak');
 });
 
 Route::get('/getBarangById/{id}', [BarangController::class, 'getBarangById'])->name('getBarangById');

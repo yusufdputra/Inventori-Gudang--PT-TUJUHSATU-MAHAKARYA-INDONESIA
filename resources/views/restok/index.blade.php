@@ -201,7 +201,7 @@
   <div class="custom-modal-text">
 
     <div class="text-center">
-      <h4 class="text-uppercase font-bold mb-0">Hapus barang</h4>
+      <h4 class="text-uppercase font-bold mb-0">Hapus Permintaan Stok Barang</h4>
     </div>
     <div class="p-20">
 

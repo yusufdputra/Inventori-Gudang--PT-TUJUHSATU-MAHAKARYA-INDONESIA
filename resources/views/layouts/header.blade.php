@@ -31,12 +31,10 @@
 
   <!-- time picker -->
   <link href="{{asset('adminto/plugins/timepicker/bootstrap-timepicker.min.css')}}" rel="stylesheet">
-
   <!-- form Uploads -->
   <link href="{{asset('adminto/plugins/fileuploads/css/dropify.min.css')}}" rel="stylesheet" type="text/css" />
 
   <!-- select2 -->
-  
   <link href="{{asset('adminto/plugins/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
 
   <link href="{{asset('adminto/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet" />

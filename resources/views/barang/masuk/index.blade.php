@@ -6,13 +6,17 @@
     <div class="card-box table-responsive">
 
       <div class="form-row">
-      @role('admin|pegawai')
+        @role('admin|pegawai')
         <div class="form-group ">
           <a href="#tambah-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary m-l-10 waves-light  ">Tambah</a>
         </div>
-      @endrole
+        @endrole
 
-        <div class="form-group col-md-4">
+        <div class="form-group ">
+          <a href="#cetak-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-purple m-l-10 waves-light  ">Cetak</a>
+        </div>
+
+        <div class="form-group m-l-10  col-md-4">
 
           <div class="input-group">
             <div class="input-group-append">
@@ -256,6 +260,57 @@
   </div>
 
 </div>
+
+<div id="cetak-modal" class="modal-demo">
+  <button type="button" class="close" onclick="Custombox.close();">
+    <span>&times;</span><span class="sr-only">Close</span>
+  </button>
+
+  <div class="custom-modal-text">
+
+    <div class="text-center">
+      <h4 class="text-uppercase font-bold mb-0">Cetak Barang Masuk</h4>
+    </div>
+    <div class="p-20 text-left">
+      <form class="form-horizontal m-t-20" target="_BLANK" enctype="multipart/form-data" action="{{route('cetak.cetak')}}" method="POST">
+        {{csrf_field()}}
+
+        <input type="hidden" value="masuk" name="jenis">
+
+        <div class="form-group">
+          <label for="">Dari Tanggal</label>
+          <div class="col-xs-12">
+            <div class="input-group-append">
+              <input type="text" class="form-control datepicker-autoclose"  autocomplete="off"  name="start_date" id="">
+              <span class="input-group-text"><i class="ti-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">Sampai Tanggal</label>
+          <div class="col-xs-12">
+            <div class="input-group-append">
+              <input type="text" class="form-control datepicker-autoclose"  autocomplete="off" name="end_date"  id="">
+              <span class="input-group-text"><i class="ti-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group text-center m-t-30">
+          <div class="col-xs-12">
+            <button class="btn btn-success btn-bordred btn-block waves-effect waves-light" type="submit">Cetak</button>
+          </div>
+        </div>
+
+
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
 
 <script type="text/javascript">
   $('.modal_edit').click(function() {

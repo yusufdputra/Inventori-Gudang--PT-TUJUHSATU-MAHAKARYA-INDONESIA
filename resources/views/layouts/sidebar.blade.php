@@ -62,10 +62,8 @@
           <a href="{{route ('restok.index')}}" class="waves-effect"><i class="mdi mdi-basket-fill"></i> <span> Restok </span> </a>
         </li>
 
-
         @endrole
 
-   
 
 
 
