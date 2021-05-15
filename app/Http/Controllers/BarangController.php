@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
@@ -18,8 +19,12 @@ class BarangController extends Controller
     public function index()
     {
         $title = "Kelola Data Barang";
-
-        $barang = Barang::orderBy('created_at', 'DESC')->get();
+        
+        if (Auth::user()->roles[0]['name'] == 'admin') {
+            $barang = Barang::orderBy('created_at', 'DESC')->get();
+        }else{
+            $barang = Barang::orderBy('stok', 'ASC')->get();
+        }
         return view('admin.barang.index', compact('title', 'barang'));
     }
 

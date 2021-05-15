@@ -75,7 +75,7 @@ class BarangKeluarController extends Controller
 
             return redirect()->back()->with('success', 'Barang Keluar berhasil diubah');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('alert', 'Barang Keluar gagal diubah'.$th);
+            return redirect()->back()->with('alert', 'Barang Keluar gagal diubah');
         }
     }
 

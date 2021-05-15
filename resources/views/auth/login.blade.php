@@ -33,7 +33,7 @@
                         <div class="col-xs-12">
 
 
-                            <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" data-toggle="password" required autocomplete="current-password">
 
                             @error('password')
                             <span class="invalid-feedback" role="alert">

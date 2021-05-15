@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RabController;
 use App\Http\Controllers\RabTempController;
+use App\Http\Controllers\RestokController;
 use App\Http\Controllers\UserManagementController;
 use App\Models\Barang;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,6 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/user/resetpw', [UserManagementController::class, 'resetpw'])->name('user.resetpw');
 
      // kelola barang
-     Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
      Route::post('/barang/store', [BarangController::class, 'store'])->name('barang.store');
      Route::get('/barang/edit/{id}', [BarangController::class, 'edit'])->name('barang/edit');
      Route::POST('/barang/update/', [BarangController::class, 'update'])->name('barang.update');
@@ -53,8 +53,6 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
     Route::POST('/kategori/edit', [KategoriController::class, 'update'])->name('kategori.update');
     Route::POST('/kategori/hapus/', [KategoriController::class, 'hapus'])->name('kategori.hapus');
-
-   
 
     // kelola rab
     Route::get('/rab', [RabController::class, 'index'])->name('rab.index');
@@ -97,9 +95,22 @@ Route::group(['middleware' => ['role:admin|pegawai']], function () {
     Route::get('/keluar/edit/{id}', [BarangKeluarController::class, 'edit'])->name('keluar/edit');
     Route::POST('/keluar/update/', [BarangKeluarController::class, 'update'])->name('keluar.update');
     Route::POST('/keluar/hapus/', [BarangKeluarController::class, 'hapus'])->name('keluar.hapus');
-
-    // ajax
     
+    // kelola barang index
+    Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
+    
+    // kelola restok barang 
+    Route::get('/restok', [RestokController::class, 'index'])->name('restok.index');
+    Route::post('restok/store', [RestokController::class, 'store'])->name('restok.store');
+    Route::get('/restok/edit/{id}', [RestokController::class, 'edit'])->name('restok/edit');
+    Route::POST('/restok/update/', [RestokController::class, 'update'])->name('restok.update');
+    Route::POST('/restok/terima/', [RestokController::class, 'terima'])->name('restok.terima');
+    Route::POST('/restok/hapus/', [RestokController::class, 'hapus'])->name('restok.hapus');
+});
+
+Route::group(['middleware' => ['role:pegawai']], function () {  
+    
+
 });
 
 Route::get('/getBarangById/{id}', [BarangController::class, 'getBarangById'])->name('getBarangById');

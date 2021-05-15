@@ -4,16 +4,19 @@
 <div class="row">
   <div class="col-12">
     <div class="card-box table-responsive">
-      @role('admin')
 
+      @role('admin')
       <div class="form-row">
         <div class="form-group ">
           <a href="#tambah-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary m-l-10 waves-light  ">Tambah</a>
         </div>
 
-      </div>
 
+
+      </div>
       @endrole
+
+
 
       @if(\Session::has('alert'))
       <div class="alert alert-danger">
@@ -37,7 +40,12 @@
             <th>Stok</th>
             <th>Satuan</th>
             <th>Tanggal Perubahan</th>
+            @role('admin')
             <th>Aksi</th>
+            @endrole
+            @role('pegawai')
+            <th>Restok</th>
+            @endrole
           </tr>
         </thead>
         <tbody>
@@ -56,13 +64,17 @@
               @endif
             </td>
 
-
+            @role('admin')
             <td>
               <a href="#edit-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-nama="{{$value['nama']}}" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
-              <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-edit"></i></a>
-
-
+              <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
             </td>
+            @endrole
+            @role('pegawai')
+            <td>
+              <a href="#restok-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-nama="{{$value['nama']}}" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_restok"><i class="mdi mdi-basket-fill"></i></a>
+            </td>
+            @endrole
           </tr>
           @endforeach
         </tbody>
@@ -211,6 +223,45 @@
 
 </div>
 
+<div id="restok-modal" class="modal-demo">
+  <button type="button" class="close" onclick="Custombox.close();">
+    <span>&times;</span><span class="sr-only">Close</span>
+  </button>
+
+  <div class="custom-modal-text">
+
+    <div class="text-center">
+      <h4 class="text-uppercase font-bold mb-0">Ajukan Restok <span id="nama_restok"></span></h4>
+    </div>
+    <div class="p-20 text-left">
+
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('restok.store')}}" method="POST">
+        {{csrf_field()}}
+        <input type="hidden" name="id" id="restok_id">
+
+
+        <div class="form-group">
+          <label for="">Permintaan Stok</label>
+          <div class="col-xs-12">
+            <input class="form-control" type="number" min="0" autocomplete="off" name="stok" required="" placeholder="Permintaan Stok Barang">
+          </div>
+        </div>
+
+
+        <div class="form-group text-center m-t-30">
+          <div class="col-xs-12">
+            <button class="btn btn-success btn-bordred btn-block waves-effect waves-light" type="submit">Ubah</button>
+          </div>
+        </div>
+
+
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
 <script type="text/javascript">
   $('.modal_edit').click(function() {
     var id = $(this).data('id');
@@ -232,6 +283,15 @@
         toastr.error('Gagal memanggil data! ')
       }
     })
+
+  });
+
+  $('.modal_restok').click(function() {
+    var id = $(this).data('id');
+    var nama = $(this).data('nama');
+    $('#restok_id').val(id)
+    $('#nama_restok').html(nama)
+
 
   });
 

@@ -22,5 +22,9 @@ class Barang extends Model
     {
         return $this->belongsToMany(BarangKeluar::class);
     }
+    public function restok()
+    {
+        return $this->belongsToMany(Restok::class);
+    }
     
 }

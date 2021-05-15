@@ -6,7 +6,7 @@
     <div class="card-box table-responsive">
 
       <div class="form-row">
-      @role('admin')
+      @role('admin|pegawai')
         <div class="form-group ">
           <a href="#tambah-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary m-l-10 waves-light  ">Tambah</a>
         </div>
@@ -51,7 +51,7 @@
             <th>No.</th>
             <th>Tanggal Masuk</th>
             <th>Nama barang</th>
-            <th>Jumlah Stok Sekarang</th>
+            <!-- <th>Jumlah Stok Sekarang</th> -->
             <th>Jumlah Masuk</th>
             <th>Lokasi Penyimpanan</th>
             <th>Aksi</th>
@@ -63,12 +63,12 @@
             <td>{{$key+1}}</td>
             <td>{{date("d-M-Y H:m ", strtotime(($value->created_at)))}} WIB</td>
             <td>{{$value->barang[0]['nama']}}</td>
-            <td>{{$value->barang[0]['stok']}}</td>
+            <!-- <td>{{$value->barang[0]['stok']}}</td> -->
             <td>{{$value->stok_masuk}}</td>
             <td>{{$value->lokasi}}</td>
             <td>
               <a href="#edit-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-nama="{{$value['nama']}}" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
-              <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id_barang="{{$value->id_barang}}" data-stok="{{$value->stok_masuk}}" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-edit"></i></a>
+              <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id_barang="{{$value->id_barang}}" data-stok="{{$value->stok_masuk}}" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
 
 
             </td>

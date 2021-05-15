@@ -42,6 +42,10 @@
           </ul>
         </li>
 
+        @endrole
+
+
+        @role('admin|pegawai')
         <li>
           <a href="{{route ('barang.index')}}" class="waves-effect"><i class="mdi mdi-package-variant-closed"></i> <span> Barang </span> </a>
         </li>
@@ -55,18 +59,13 @@
         </li>
 
         <li>
-          <a href="{{route ('rab.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> RAB </span> </a>
+          <a href="{{route ('restok.index')}}" class="waves-effect"><i class="mdi mdi-basket-fill"></i> <span> Restok </span> </a>
         </li>
+
 
         @endrole
 
-        @role("pegawai")
-
-        <li>
-          <a href="{{route ('agenda.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Agenda </span> </a>
-        </li>
-
-        @endrole
+   
 
 
 
