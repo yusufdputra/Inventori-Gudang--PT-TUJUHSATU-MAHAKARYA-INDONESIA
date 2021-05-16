@@ -49,10 +49,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-  
-
-    public function agenda()
-    {
-        return $this->hasOne(Agenda::class, 'id', 'tujuan_orang');
-    }
 }

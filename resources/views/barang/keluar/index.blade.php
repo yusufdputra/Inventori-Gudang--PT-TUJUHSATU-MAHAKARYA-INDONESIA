@@ -61,7 +61,9 @@
             <th>Lokasi Penyimpanan</th>
             <th>Nama Pengambil</th>
             <th>Fungsi</th>
+            @role('admin|pegawai')
             <th>Aksi</th>
+            @endrole
           </tr>
         </thead>
         <tbody>
@@ -75,12 +77,12 @@
             <td>{{$value->lokasi}}</td>
             <td>{{$value->pengambil}}</td>
             <td>{{$value->fungsi}}</td>
+            @role('admin|pegawai')
             <td>
               <a href="#edit-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-nama="{{$value['nama']}}" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
               <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id_barang="{{$value->id_barang}}" data-stok="{{$value->stok_keluar}}" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
-
-
             </td>
+            @endrole
           </tr>
           @endforeach
         </tbody>
@@ -363,9 +365,9 @@
         $('#edit_pengambil').val(data['pengambil'])
         $('#edit_fungsi').val(data['fungsi'])
         $('#old_stok_keluar').val(data['stok_keluar'])
-        $('#edit_stok_keluar').attr({
-          "max": data['barang'][0]['stok']
-        });
+        // $('#edit_stok_keluar').attr({
+        //   "max": data['barang'][0]['stok']
+        // });
       },
       error: function(data) {
         toastr.error('Gagal memanggil data! ')

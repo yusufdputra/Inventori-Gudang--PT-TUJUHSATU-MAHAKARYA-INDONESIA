@@ -14,6 +14,6 @@ class BarangMasuk extends Model
 
     public function barang()
     {
-        return $this->hasMany(Barang::class, 'id', 'id_barang');
+        return $this->hasMany(Barang::class, 'id', 'id_barang')->withTrashed();
     }
 }

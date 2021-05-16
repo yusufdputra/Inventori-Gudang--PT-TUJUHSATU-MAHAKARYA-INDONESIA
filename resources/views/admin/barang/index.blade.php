@@ -117,6 +117,8 @@
             <select required class="form-control" name="satuan">
               <option value="pcs">Pcs</option>
               <option value="lusin">Lusin</option>
+              <option value="kaleng">Kaleng</option>
+              <option value="plat">Plat</option>
             </select>
           </div>
         </div>
@@ -169,8 +171,10 @@
           <label for="">Satuan</label>
           <div class="col-xs-12">
             <select required class="form-control" id="edit_satuan" name="satuan">
-              <option value="pcs">Pcs</option>
+            <option value="pcs">Pcs</option>
               <option value="lusin">Lusin</option>
+              <option value="kaleng">Kaleng</option>
+              <option value="plat">Plat</option>
             </select>
           </div>
         </div>

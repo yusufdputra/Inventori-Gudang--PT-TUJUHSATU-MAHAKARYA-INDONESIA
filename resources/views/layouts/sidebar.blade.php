@@ -45,7 +45,7 @@
         @endrole
 
 
-        @role('admin|pegawai')
+        @role('admin|pegawai|pimpinan')
         <li>
           <a href="{{route ('barang.index')}}" class="waves-effect"><i class="mdi mdi-package-variant-closed"></i> <span> Barang </span> </a>
         </li>

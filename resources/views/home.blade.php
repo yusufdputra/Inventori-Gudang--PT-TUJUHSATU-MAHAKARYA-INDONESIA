@@ -1,48 +1,102 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
-  <div class="col-12">
-    <div class="card-box ">
+<div class="col-12">
+    <div class="row">
 
-      <h2>PT. Sejahtera Mandiri Pekanbaru</h2>
-      <div class="bg-picture">
-        <div class="profile-info-name">
-          
-          <div class="profile-info-detail">
-            <img src="{{asset('adminto/images/brand/instansi.jpg')}}" class="img-thumbnail" alt="profile-image">
-            <h4><strong>SEJARAH SINGKAT</strong></h4>
-            <p>Didirikan pada tahun 2000, PT Sejahtera Mandiri Pekanbaru merupakan perusahaan karoseri fabrikasi tangki transportir BBM. Dari awal berdirinya PT. Sejahtera Mandiri Pekanbaru terus berupaya meningkatkan kualitas dan pelayanan kepada pelanggan, dan terus berinovasi dengan meningkatkan kualitas produk agar menjadi produk unggulan. PT Sejahtera Mandiri Pekanbaru juga telah menerapkan standar system managemen ISO 9001:2015 dengan sistem manajemen yang baik maka proses manajemen hingga proses produksi akan berjalan denga sangat baik dimana setiap proses pembuatan produk melalui proses sesuai denga standar manajemen dan SOP yang telah di tetapkan. dan menerapkan OHSAS 18001 adalah suatu standard internasional untuk menerapkan Sistem Manajemen Keselamatan dan Kesehatan Kerja di tempat kerja/perusahaan</p>
+    <div class="col-lg-4 col-xs-12">
+      <div class="card-box">
+        <table class="table text-center" id="">
+          <thead>
+            <tr>
+              <th colspan="2" class="bg-warning text-center text-white">Stok Barang Minimum</th>
+            </tr>
+            <tr>
+              <th>Barang</th>
+              <th>Stok</th>
+            </tr>
+          </thead>
+          <tbody class="table-striped">
+            @if(!$barangs->isEmpty())
+            @foreach ($barangs as $key=>$value)
+            <tr>
+              <td>{{$value->nama}}</td>
+              <td><span class="badge badge-warning">{{$value->stok}}</span></td>
+            </tr>
 
-          
+            @endforeach
+            @else
+            <td colspan="2">Tidak Ada Hasil</td>
+            @endif
 
-          </div>
+          </tbody>
+        </table>
+      </div>
 
-          <div class="clearfix"></div>
-        </div>
-        <div>
-        <h4><strong>VISI</strong></h4>
-            <p>MENJADI PERUSAHAAN JASA KAROSERI TANGKI DAN REPERASI SERTA JASA PENDUKUNG LAINNYA YANG MAMPU MEMUASKAN PELANGGAN DAN MAMPU BERSAING DI TINGKAT LOKAL, REGIONAL MAUPUN NASIONAL</p>
+    </div>
 
-            <h4 ><strong>MISI</strong></h4>
-            <p>
-              Dalam menjalankan kegiatan usahanya maka PT.SEJAHTERA MANDIRI PEKANBARU memiliki tujuan :
-            <ol>
-              <li>
-                Memberikan pelayanan terbaik dan mengutamakan kepuasan pelanggan dengan selalu berupaya menyelesaikan pekerjaan tepat waktu
-              </li>
-              <li>
-                Memiliki jaringan kerja yang luas dan dikenal oleh semua kalangan terkait dengan bidang Jasa karoseri Tangki dan reperasi serta jasa pendukung terkait lainnya kepada pelanggannya.
-              </li>
-              <li>
-                Meningkatkan kemampuan & ketrampilan Sumber Daya Manusia yang terkait dengan Jasa Pelayanan Organisasi
-              </li>
-              <li>
-                Menjaga dan memperhatikan kesehatan dan keselamatan kerja personel maupun pelanggan
-              </li>
-            </ol>
-            </p>
-        </div>
+    <div class="col-lg-4 col-xs-12">
+      <div class="card-box">
+        <table class="table text-center" id="">
+          <thead>
+            <tr>
+              <th colspan="3" class="bg-success text-center text-white">Transaksi Terakhir Barang Masuk</th>
+            </tr>
+            <tr>
+              <th>Tanggal</th>
+              <th>Barang</th>
+              <th>Jumlah</th>
+            </tr>
+          </thead>
+          <tbody class="table-striped">
+            @if(!$masuks->isEmpty())
+            @foreach ($masuks as $key=>$value)
+            <tr>
+              <td>{{date("d-M-Y H:m ", strtotime(($value->created_at)))}} WIB</td>
+              <td>{{$value->barang[0]['nama']}}</td>
+              <td><span class="badge badge-success">{{$value->stok_masuk}}</span></td>
+            </tr>
+
+            @endforeach
+            @else
+            <td colspan="3">Tidak Ada Hasil</td>
+            @endif
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 col-xs-12">
+      <div class="card-box">
+        <table class="table text-center" id="">
+          <thead>
+            <tr>
+              <th colspan="3" class="bg-danger text-center text-white">Transaksi Terakhir Barang Keluar</th>
+            </tr>
+            <tr>
+              <th>Tanggal</th>
+              <th>Barang</th>
+              <th>Jumlah</th>
+            </tr>
+          </thead>
+          <tbody class="table-striped">
+            @if(!$keluars->isEmpty())
+            @foreach ($keluars as $key=>$value)
+            <tr>
+              <td>{{date("d-M-Y H:m ", strtotime(($value->created_at)))}} WIB</td>
+              <td>{{$value->barang[0]['nama']}}</td>
+              <td><span class="badge badge-danger">{{$value->stok_keluar}}</span></td>
+            </tr>
+
+            @endforeach
+            @else
+            <td colspan="3">Tidak Ada Hasil</td>
+            @endif
+
+          </tbody>
+        </table>
       </div>
 
     </div>

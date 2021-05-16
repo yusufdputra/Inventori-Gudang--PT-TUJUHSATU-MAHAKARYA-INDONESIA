@@ -92,6 +92,9 @@
         // Default Datatable
         $('#datatable').DataTable();
 
+        // Default Datatable
+        $('#datatable2').DataTable();
+
         //Buttons examples
         var table = $('#datatable-buttons').DataTable({
             lengthChange: false,

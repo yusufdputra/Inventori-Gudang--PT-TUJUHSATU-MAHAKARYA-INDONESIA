@@ -33,7 +33,9 @@
             <th>Stok Permintaan</th>
             <th>Stok Terpenuhi</th>
             <th>Tanggal Pengajuan</th>
+            @role('admin|pegawai')
             <th>Action</th>
+            @endrole
           </tr>
         </thead>
 
@@ -52,8 +54,9 @@
               {{$value->terpenuhi_stok}}
               @endif
             </td>
-            <td>{{date('d-M-Y, H:m', strtotime($value['created_at']))}}</td>
+            <td>{{date('d-M-Y, H:m', strtotime($value['created_at']))}} WIB</td>
 
+            @role('admin|pegawai')
             @if (($value->terpenuhi_stok) == null)
             <td>
               @role('admin')
@@ -67,6 +70,7 @@
             @else
             <td>-</td>
             @endif
+            @endrole
 
           </tr>
 
@@ -247,28 +251,28 @@
         <div class="form-group">
           <label for="">Nama Barang</label>
           <div class="col-xs-12">
-            <input class="form-control" required readonly id="terima_nama_barang" type="text"  autocomplete="off"  required="" placeholder="Nama Barang">
+            <input class="form-control" required readonly id="terima_nama_barang" type="text" autocomplete="off" required="" placeholder="Nama Barang">
           </div>
         </div>
 
         <div class="form-group">
           <label for="">Stok Saat Ini</label>
           <div class="col-xs-12">
-            <input class="form-control" required readonly id="terima_stok_sekarang" type="number" min="0" autocomplete="off"  required="" placeholder="Stok Barang">
+            <input class="form-control" required readonly id="terima_stok_sekarang" type="number" min="0" autocomplete="off" required="" placeholder="Stok Barang">
           </div>
         </div>
 
         <div class="form-group">
           <label for="">Stok Permintaan</label>
           <div class="col-xs-12">
-            <input class="form-control" readonly type="number" min="0" autocomplete="off" id="terima_permintaan_stok"  required="" placeholder="Stok Barang">
+            <input class="form-control" readonly type="number" min="0" autocomplete="off" id="terima_permintaan_stok" required="" placeholder="Stok Barang">
           </div>
         </div>
 
         <div class="form-group">
           <label for="">Stok Terpenuhi</label>
           <div class="col-xs-12">
-            <input class="form-control" type="number" min="0" autocomplete="off" name="terpenuhi_stok" id="terima_terpenuhi_stok"  required="" placeholder="Stok Barang">
+            <input class="form-control" type="number" min="0" autocomplete="off" name="terpenuhi_stok" id="terima_terpenuhi_stok" required="" placeholder="Stok Barang">
           </div>
         </div>
 

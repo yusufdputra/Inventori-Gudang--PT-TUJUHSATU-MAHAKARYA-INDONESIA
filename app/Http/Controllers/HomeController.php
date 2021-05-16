@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\BarangKeluar;
+use App\Models\BarangMasuk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +36,10 @@ class HomeController extends Controller
         $title = "Dashboard";
 
         if (Auth::check()) {
-            return view('home', compact('title'));
+            $barangs = Barang::orderBy('stok', 'ASC')->where('stok', '<', 100)->limit(5)->get();
+            $masuks = BarangMasuk::orderBy('created_at', 'DESC')->limit(5)->get();
+            $keluars = BarangKeluar::orderBy('created_at', 'DESC')->limit(5)->get();
+            return view('home', compact('title', 'barangs', 'masuks', 'keluars'));
         }
         return view('auth.login', compact('title'));
     }

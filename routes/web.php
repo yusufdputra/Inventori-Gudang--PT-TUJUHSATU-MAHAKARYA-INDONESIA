@@ -84,24 +84,18 @@ Route::group(['middleware' => ['role:admin']], function () {
 Route::group(['middleware' => ['role:admin|pegawai']], function () {
 
     // barang masuk
-    Route::get('/masuk', [BarangMasukController::class, 'index'])->name('masuk.index');
     Route::post('masuk/store', [BarangMasukController::class, 'store'])->name('masuk.store');
     Route::get('/masuk/edit/{id}', [BarangMasukController::class, 'edit'])->name('masuk/edit');
     Route::POST('/masuk/update/', [BarangMasukController::class, 'update'])->name('masuk.update');
     Route::POST('/masuk/hapus/', [BarangMasukController::class, 'hapus'])->name('masuk.hapus');
 
     // barang keluar
-    Route::get('/keluar', [BarangKeluarController::class, 'index'])->name('keluar.index');
     Route::post('keluar/store', [BarangKeluarController::class, 'store'])->name('keluar.store');
     Route::get('/keluar/edit/{id}', [BarangKeluarController::class, 'edit'])->name('keluar/edit');
     Route::POST('/keluar/update/', [BarangKeluarController::class, 'update'])->name('keluar.update');
     Route::POST('/keluar/hapus/', [BarangKeluarController::class, 'hapus'])->name('keluar.hapus');
-    
-    // kelola barang index
-    Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
-    
+  
     // kelola restok barang 
-    Route::get('/restok', [RestokController::class, 'index'])->name('restok.index');
     Route::post('restok/store', [RestokController::class, 'store'])->name('restok.store');
     Route::get('/restok/edit/{id}', [RestokController::class, 'edit'])->name('restok/edit');
     Route::POST('/restok/update/', [RestokController::class, 'update'])->name('restok.update');
@@ -110,7 +104,14 @@ Route::group(['middleware' => ['role:admin|pegawai']], function () {
 });
 
 Route::group(['middleware' => ['role:pegawai|admin|pimpinan']], function () {  
-    
+    // barang masuk
+    Route::get('/masuk', [BarangMasukController::class, 'index'])->name('masuk.index');
+    // barang keluar
+    Route::get('/keluar', [BarangKeluarController::class, 'index'])->name('keluar.index');
+    // kelola barang index
+    Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
+    // kelola restok barang 
+    Route::get('/restok', [RestokController::class, 'index'])->name('restok.index');
     // kelola cetak
     Route::post('/cetak/cetak', [CetakController::class, 'cetak'])->name('cetak.cetak');
 });
