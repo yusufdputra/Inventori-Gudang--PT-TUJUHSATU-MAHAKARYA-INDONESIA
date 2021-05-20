@@ -247,7 +247,7 @@
         <div class="form-group">
           <label for="">Permintaan Stok</label>
           <div class="col-xs-12">
-            <input class="form-control" type="number" min="0" autocomplete="off" name="stok" required="" placeholder="Permintaan Stok Barang">
+            <input class="form-control" type="number" min="0" autocomplete="off" name="permintaan_stok" required="" placeholder="Permintaan Stok Barang">
           </div>
         </div>
 
