@@ -53,29 +53,31 @@
         <thead>
           <tr>
             <th>No.</th>
-            <th>Tanggal Masuk</th>
-            <th>Nama barang</th>
-            <!-- <th>Jumlah Stok Sekarang</th> -->
-            <th>Jumlah Masuk</th>
-            <th>Lokasi Penyimpanan</th>
+            <th>Tanggal Peminjaman</th>
+            <th>Nama Pegawai</th>
+            <th>Nama Barang</th>
+            <th>Estimasi Peminjaman (Hari)</th>
+            <th>Jumlah Peminjaman</th>
+            <th>Fungsi Peminjaman</th>
             @role('admin|pegawai')
             <th>Aksi</th>
             @endrole
           </tr>
         </thead>
         <tbody>
-          @foreach ($barang_msk AS $key=>$value)
+          @foreach ($peminjaman AS $key=>$value)
           <tr>
             <td>{{$key+1}}</td>
             <td>{{date("d-M-Y H:m ", strtotime(($value->created_at)))}} WIB</td>
+            <td>{{$value->nama_peminjam}}</td>
             <td>{{$value->barang[0]['nama']}}</td>
-            <!-- <td>{{$value->barang[0]['stok']}}</td> -->
-            <td>{{$value->stok_masuk}}</td>
-            <td>{{$value->lokasi}}</td>
+            <td>{{$value->estimasi}}</td>
+            <td>{{$value->jml_pinjam}}</td>
+            <td>{{$value->fungsi}}</td>
             @role('admin|pegawai')
             <td>
-              <a href="#edit-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-nama="{{$value['nama']}}" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
-              <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id_barang="{{$value->id_barang}}" data-stok="{{$value->stok_masuk}}" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
+              <a href="#edit-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
+              <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id_barang="{{$value->id_barang}}" data-stok="{{$value->jml_pinjam}}" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
             </td>
             @endrole
           </tr>
@@ -94,16 +96,16 @@
   <div class="custom-modal-text">
 
     <div class="text-center">
-      <h4 class="text-uppercase font-bold mb-0">Tambah barang</h4>
+      <h4 class="text-uppercase font-bold mb-0">Tambah peminjaman baru</h4>
     </div>
     <div class="p-20 text-left">
-      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('masuk.store')}}" method="POST">
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('peminjaman.store')}}" method="POST">
         {{csrf_field()}}
 
         <div class="form-group">
-          <label for="">Tanggal Masuk</label>
+          <label for="">Nama Peminjam</label>
           <div class="col-xs-12">
-            <input class="form-control" type="text" readonly value="{{\Carbon\Carbon::now()}}">
+            <input class="form-control" type="text" autocomplete="off" name="nama_peminjam" required="" placeholder="Nama Lengkap">
           </div>
         </div>
 
@@ -127,17 +129,24 @@
         </div>
 
         <div class="form-group">
-          <label for="">Stok Masuk</label>
+          <label for="">Stok Dipinjam</label>
           <div class="col-xs-12">
-            <input class="form-control" type="number" id="stok" autocomplete="off" name="stok_masuk" required="" placeholder="Stok Barang">
+            <input class="form-control" type="number" id="jml_pinjam" autocomplete="off" name="jml_pinjam" required="" placeholder="Stok Dipinjam">
           </div>
         </div>
 
         <div class="form-group">
-          <label>Lokasi Barang Penyimpanan</label>
+          <label for="">Estimasi Waktu Peminjaman (Hari)</label>
+          <div class="col-xs-12">
+            <input class="form-control" type="number" autocomplete="off" name="estimasi" required="" placeholder="(Hari)">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Fungsi Peminjaman</label>
           <div class="col-xs-12">
 
-            <textarea class="form-control" type="text" autocomplete="off" name="lokasi" required="" placeholder="Nama Lokasi"></textarea>
+            <textarea class="form-control" type="text" autocomplete="off" name="fungsi" required="" placeholder="Fungsi Peminjaman"></textarea>
           </div>
         </div>
 
@@ -167,15 +176,16 @@
     </div>
     <div class="p-20 text-left">
 
-      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('masuk.update')}}" method="POST">
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('peminjaman.update')}}" method="POST">
         {{csrf_field()}}
         <input type="hidden" name="id" id="edit_id">
-        <input type="hidden" name="old_stok_masuk" id="old_stok_masuk">
+        <input type="hidden" name="old_id_barang" id="old_id_barang">
+        <input type="hidden" name="old_stok_pinjam" id="old_stok_pinjam">
 
         <div class="form-group">
-          <label for="">Tanggal Masuk</label>
+          <label for="">Nama Peminjam</label>
           <div class="col-xs-12">
-            <input class="form-control" type="text" readonly value="{{\Carbon\Carbon::now()}}">
+            <input class="form-control" type="text" autocomplete="off" id="edit_nama_peminjam" name="nama_peminjam" required="" placeholder="Nama Lengkap">
           </div>
         </div>
 
@@ -199,17 +209,24 @@
         </div>
 
         <div class="form-group">
-          <label for="">Stok Masuk</label>
+          <label for="">Stok Dipinjam</label>
           <div class="col-xs-12">
-            <input class="form-control" type="number" id="stok_masuk" autocomplete="off" name="stok_masuk" required="" placeholder="Stok Barang">
+            <input class="form-control" type="number" id="edit_jml_pinjam" autocomplete="off" name="jml_pinjam" required="" placeholder="Stok Dipinjam">
           </div>
         </div>
 
         <div class="form-group">
-          <label>Lokasi Barang Penyimpanan</label>
+          <label for="">Estimasi Waktu Peminjaman (Hari)</label>
+          <div class="col-xs-12">
+            <input class="form-control" type="number" autocomplete="off" id="edit_estimasi" name="estimasi" required="" placeholder="(Hari)">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Fungsi Peminjaman</label>
           <div class="col-xs-12">
 
-            <textarea class="form-control" type="text" autocomplete="off" name="lokasi" required="" id="lokasi" placeholder="Nama Lokasi"></textarea>
+            <textarea class="form-control" type="text" autocomplete="off" id="edit_fungsi" name="fungsi" required="" placeholder="Fungsi Peminjaman"></textarea>
           </div>
         </div>
 
@@ -235,16 +252,16 @@
   <div class="custom-modal-text">
 
     <div class="text-center">
-      <h4 class="text-uppercase font-bold mb-0">Hapus barang</h4>
+      <h4 class="text-uppercase font-bold mb-0">Hapus Peminjaman</h4>
     </div>
     <div class="p-20">
 
-      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('masuk.hapus')}}" method="POST">
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('peminjaman.hapus')}}" method="POST">
         {{csrf_field()}}
         <div>
           <input type="hidden" id='id_hapus' name='id'>
           <input type="hidden" id='hapus_id_barang' name='id_barang'>
-          <input type="hidden" id='hapus_stok_masuk' name='stok_masuk'>
+          <input type="hidden" id='hapus_jml_pinjam' name='jml_pinjam'>
           <h5 id="exampleModalLabel">Apakah anda yakin ingin mengapus ini?</h5>
         </div>
 
@@ -283,7 +300,7 @@
           <label for="">Dari Tanggal</label>
           <div class="col-xs-12">
             <div class="input-group-append">
-              <input type="text" class="form-control datepicker-autoclose"  autocomplete="off"  name="start_date" id="">
+              <input type="text" class="form-control datepicker-autoclose" autocomplete="off" name="start_date" id="">
               <span class="input-group-text"><i class="ti-calendar"></i></span>
             </div>
           </div>
@@ -293,7 +310,7 @@
           <label for="">Sampai Tanggal</label>
           <div class="col-xs-12">
             <div class="input-group-append">
-              <input type="text" class="form-control datepicker-autoclose"  autocomplete="off" name="end_date"  id="">
+              <input type="text" class="form-control datepicker-autoclose" autocomplete="off" name="end_date" id="">
               <span class="input-group-text"><i class="ti-calendar"></i></span>
             </div>
           </div>
@@ -320,19 +337,25 @@
     $('#edit_id').val(id)
 
     $.ajax({
-      url: '{{url("masuk/edit")}}/' + id,
+      url: '{{url("peminjaman/edit")}}/' + id,
       type: 'GET',
       dataType: 'json',
       success: 'success',
       success: function(data) {
 
-        console.log(data['id_barang']);
         $('#edit_id').val(id)
+        $('#edit_nama_peminjam').val(data['nama_peminjam'])
         $('#edit_id_barang').val(data['id_barang'])
         $('#edit_stok_tersedia').val(data['barang'][0]['stok'])
-        $('#stok_masuk').val(data['stok_masuk'])
-        $('#lokasi').val(data['lokasi'])
-        $('#old_stok_masuk').val(data['stok_masuk'])
+        $('#edit_jml_pinjam').val(data['jml_pinjam'])
+        $('#edit_fungsi').val(data['fungsi'])
+        $('#edit_estimasi').val(data['estimasi'])
+
+        $('#old_stok_pinjam').val(data['jml_pinjam'])
+        $('#old_id_barang').val(data['id_barang'])
+        $('#edit_jml_pinjam').attr({
+          "max": (data['barang'][0]['stok']+data['jml_pinjam'])
+        });
 
       },
       error: function(data) {
@@ -348,7 +371,7 @@
     var stok = $(this).data('stok');
     $('#id_hapus').val(id);
     $('#hapus_id_barang').val(id_barang);
-    $('#hapus_stok_masuk').val(stok);
+    $('#hapus_jml_pinjam').val(stok);
   });
 
   // untuk tambah
@@ -361,6 +384,9 @@
       success: 'success',
       success: function(data) {
         $('#stok_tersedia').val(data['stok'])
+        $('#jml_pinjam').attr({
+          "max": data['stok']
+        });
       },
       error: function(data) {
         toastr.error('Gagal memanggil data! ')
@@ -370,7 +396,7 @@
 
   // untuk edit
   document.getElementById('edit_id_barang').addEventListener("change", function() {
-    $('#stok_tersedia').html('')
+    $('#edit_stok_tersedia').html('')
     $.ajax({
       url: '{{url("getBarangById")}}/' + this.value,
       type: 'GET',
@@ -378,6 +404,9 @@
       success: 'success',
       success: function(data) {
         $('#edit_stok_tersedia').val(data['stok'])
+        $('#edit_jml_pinjam').attr({
+          "max": (data['stok'])
+        });
       },
       error: function(data) {
         toastr.error('Gagal memanggil data! ')

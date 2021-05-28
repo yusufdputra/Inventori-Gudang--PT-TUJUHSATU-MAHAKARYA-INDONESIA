@@ -3,13 +3,10 @@
 
 @include('layouts.topbar')
 
-@include('layouts.sidebar')
-
-
-
-<div class="content-page">
+<div class="wrapper ">
     <!-- Start content -->
-    <div class="container-fluid">
+    <div class="container-fluid ">
+        <h4 class="page-title">{{$title}}</h4>
         @yield('content')
     </div>
 </div>

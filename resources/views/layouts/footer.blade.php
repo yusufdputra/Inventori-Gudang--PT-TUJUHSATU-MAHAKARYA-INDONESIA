@@ -1,18 +1,10 @@
-<!-- jQuery  -->
-</div>
-
 
 <!-- Toastr js -->
 <script src="{{asset('adminto/plugins/toastr/toastr.min.js')}}"></script>
 <script src="{{asset('adminto/js/popper.min.js')}}"></script>
 <script src="{{asset('adminto/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('adminto/js/detect.js')}}"></script>
-<script src="{{asset('adminto/js/fastclick.js')}}"></script>
-<script src="{{asset('adminto/js/jquery.blockUI.js')}}"></script>
 <script src="{{asset('adminto/js/waves.js')}}"></script>
-<script src="{{asset('adminto/js/jquery.nicescroll.js')}}"></script>
 <script src="{{asset('adminto/js/jquery.slimscroll.js')}}"></script>
-<script src="{{asset('adminto/js/jquery.scrollTo.min.js')}}"></script>
 
 <!-- App js -->
 <script src="{{asset('adminto/js/jquery.core.js')}}"></script>

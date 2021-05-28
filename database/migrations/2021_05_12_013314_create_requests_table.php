@@ -17,6 +17,7 @@ class CreateRequestsTable extends Migration
             $table->id();
             $table->bigInteger('id_barang');
             $table->bigInteger('stok');
+            $table->bigInteger('id_kategori');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

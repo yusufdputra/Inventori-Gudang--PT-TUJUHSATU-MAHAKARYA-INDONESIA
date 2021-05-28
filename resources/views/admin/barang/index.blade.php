@@ -37,6 +37,7 @@
           <tr>
             <th>No.</th>
             <th>Nama barang</th>
+            <th>Kategori</th>
             <th>Stok</th>
             <th>Satuan</th>
             <th>Tanggal Perubahan</th>
@@ -53,6 +54,7 @@
           <tr>
             <td>{{$key+1}}</td>
             <td>{{$value->nama}}</td>
+            <td>{{$value->kategori[0]['nama']}}</td>
             <td>{{$value->stok}}</td>
             <td>{{$value->satuan}}</td>
             <td>
@@ -66,7 +68,7 @@
 
             @role('admin')
             <td>
-              <a href="#edit-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-nama="{{$value['nama']}}" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
+              <a href="#edit-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
               <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
             </td>
             @endrole
@@ -104,6 +106,25 @@
           </div>
         </div>
 
+
+
+        <div class="form-group">
+          <label for="">Kategori</label>
+          <div class="col-xs-12">
+            <div class="input-group">
+              <select required class="form-control" name="kategori">
+                @foreach ($kategori AS $key=>$value)
+                <option value="{{$value->id}}">{{$value->nama}}</option>
+                @endforeach
+              </select>
+              <div class="input-group-append">
+                <a href="{{route ('kategori.index')}}" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-plus"></i> <span> </span> </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         <div class="form-group">
           <label for="">Stok</label>
           <div class="col-xs-12">
@@ -115,13 +136,14 @@
           <label for="">Satuan</label>
           <div class="col-xs-12">
             <select required class="form-control" name="satuan">
-              <option value="pcs">Pcs</option>
-              <option value="lusin">Lusin</option>
-              <option value="kaleng">Kaleng</option>
-              <option value="plat">Plat</option>
+              <option value="Ball">Ball</option>
+              <option value="Set">Set</option>
+              <option value="Pcs">Pcs</option>
             </select>
           </div>
         </div>
+
+
 
         <div class="form-group text-center m-t-30">
           <div class="col-xs-12">
@@ -161,6 +183,23 @@
         </div>
 
         <div class="form-group">
+          <label for="">Kategori</label>
+          <div class="col-xs-12">
+            <div class="input-group">
+              <select required class="form-control" id="edit_kategori" name="kategori">
+                @foreach ($kategori AS $key=>$value)
+                <option value="{{$value->id}}">{{$value->nama}}</option>
+                @endforeach
+              </select>
+              <div class="input-group-append">
+                <a href="{{route ('kategori.index')}}" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-plus"></i> <span> </span> </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
           <label for="">Stok</label>
           <div class="col-xs-12">
             <input class="form-control" type="number" min="0" id="edit_stok" autocomplete="off" name="stok" required="" placeholder="Stok Barang">
@@ -171,10 +210,9 @@
           <label for="">Satuan</label>
           <div class="col-xs-12">
             <select required class="form-control" id="edit_satuan" name="satuan">
-            <option value="pcs">Pcs</option>
-              <option value="lusin">Lusin</option>
-              <option value="kaleng">Kaleng</option>
-              <option value="plat">Plat</option>
+              <option value="Ball">Ball</option>
+              <option value="Set">Set</option>
+              <option value="Pcs">Pcs</option>
             </select>
           </div>
         </div>
@@ -280,6 +318,7 @@
         $('#edit_id').val(id)
         $('#edit_nama').val(data['nama'])
         $('#edit_stok').val(data['stok'])
+        $('#edit_kategori').val(data['id_kategori'])
         $('#edit_satuan').val(data['satuan'])
 
       },

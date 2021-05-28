@@ -19,13 +19,13 @@ class BarangController extends Controller
     public function index()
     {
         $title = "Kelola Data Barang";
-        
+        $kategori = Kategori::all();
         if (Auth::user()->roles[0]['name'] == 'admin') {
-            $barang = Barang::orderBy('created_at', 'DESC')->get();
+            $barang = Barang::with('kategori')->orderBy('created_at', 'DESC')->get();
         }else{
-            $barang = Barang::orderBy('stok', 'ASC')->get();
+            $barang = Barang::with('kategori')->orderBy('stok', 'ASC')->get();
         }
-        return view('admin.barang.index', compact('title', 'barang'));
+        return view('admin.barang.index', compact('title', 'barang', 'kategori'));
     }
 
     public function store(Request $request)
@@ -35,6 +35,7 @@ class BarangController extends Controller
                 'nama' => $request->nama,
                 'satuan' => $request->satuan,
                 'stok' => $request->stok,
+                'id_kategori' => $request->kategori,
                 'created_at' => Carbon::now(),
 
             ]);
@@ -60,6 +61,7 @@ class BarangController extends Controller
                 ->update([
                     'nama' => $request->nama,
                     'satuan' => $request->satuan,
+                    'id_kategori' => $request->kategori,
                     'stok' => $request->stok
                 ]);
 

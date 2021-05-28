@@ -6,6 +6,7 @@ use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\CetakController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\RabController;
 use App\Http\Controllers\RabTempController;
 use App\Http\Controllers\RestokController;
@@ -55,25 +56,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::POST('/kategori/edit', [KategoriController::class, 'update'])->name('kategori.update');
     Route::POST('/kategori/hapus/', [KategoriController::class, 'hapus'])->name('kategori.hapus');
 
-    // kelola rab
-    Route::get('/rab', [RabController::class, 'index'])->name('rab.index');
-    Route::get('/rab/edit/{id}', [RabController::class, 'edit'])->name('rab.edit');
-    Route::get('/rab/cetak/{id}', [RabController::class, 'cetak'])->name('rab.cetak');
-    Route::POST('/rab/delete/', [RabController::class, 'hapus'])->name('rab.delete');
-
-    // kelola edit rab
-    Route::POST('/rab/edit/selesai/', [RabController::class, 'editSelesai'])->name('rab.edit.selesai');
-    Route::POST('/rab/edit/update/', [RabController::class, 'editUpdate'])->name('rab.edit.update');
-    Route::post('/rab/edit/store', [RabController::class, 'editStore'])->name('rab.edit.store');
-    Route::POST('/rab/hapus/', [RabController::class, 'editHapus'])->name('rab.edit.hapus');
-
-    // kelola rab temp
-    Route::get('/rabtemp', [RabTempController::class, 'index'])->name('rabtemp.index');
-    Route::post('/rabtemp/store', [RabTempController::class, 'store'])->name('rabtemp.store');
-    Route::get('/rabtemp/edit/{id}', [RabTempController::class, 'edit'])->name('rabtemp/edit');
-    Route::POST('/rabtemp/update/', [RabTempController::class, 'update'])->name('rabtemp.update');
-    Route::POST('/rabtemp/hapus/', [RabTempController::class, 'hapus'])->name('rabtemp.hapus');
-    Route::POST('/rabtemp/selesai/', [RabTempController::class, 'selesai'])->name('rabtemp.selesai');
+    
 
     // kelola ajax
     Route::get('/GetBarangByKategori/{id}', [AjaxController::class, 'GetBarangByKategori'])->name('GetBarangByKategori');
@@ -82,6 +65,13 @@ Route::group(['middleware' => ['role:admin']], function () {
 });
 
 Route::group(['middleware' => ['role:admin|pegawai']], function () {
+
+    // barang Peminjaman
+    Route::post('peminjaman/store', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+    Route::get('/peminjaman/edit/{id}', [PeminjamanController::class, 'edit'])->name('peminjaman/edit');
+    Route::POST('/peminjaman/update/', [PeminjamanController::class, 'update'])->name('peminjaman.update');
+    Route::POST('/peminjaman/hapus/', [PeminjamanController::class, 'hapus'])->name('peminjaman.hapus');
+
 
     // barang masuk
     Route::post('masuk/store', [BarangMasukController::class, 'store'])->name('masuk.store');
@@ -104,8 +94,8 @@ Route::group(['middleware' => ['role:admin|pegawai']], function () {
 });
 
 Route::group(['middleware' => ['role:pegawai|admin|pimpinan']], function () {  
-    // barang masuk
-    Route::get('/masuk', [BarangMasukController::class, 'index'])->name('masuk.index');
+    // barang peminjaman
+    Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
     // barang keluar
     Route::get('/keluar', [BarangKeluarController::class, 'index'])->name('keluar.index');
     // kelola barang index

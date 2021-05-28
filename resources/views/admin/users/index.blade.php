@@ -1,16 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="row">
   <div class="col-12">
     <div class="card-box table-responsive">
       <div class="align-items-center">
 
-        <a href="#tambah-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary m-l-10 waves-light  mb-5">Tambah</a>
+        <a href="#tambah-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary m-l-10 waves-light  mb-2">Tambah</a>
 
       </div>
-
-
 
       @if(\Session::has('alert'))
       <div class="alert alert-danger">
