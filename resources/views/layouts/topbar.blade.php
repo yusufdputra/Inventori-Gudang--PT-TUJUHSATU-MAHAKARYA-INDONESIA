@@ -104,7 +104,7 @@
                         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cube-send"></i> <span> Transaksi Barang</span></a>
                         <ul class="submenu">
                             <li><a href="{{route ('peminjaman.index')}}">Peminjaman</a></li>
-                            <li><a href="{{route ('keluar.index')}}">Pengembalian</a></li>
+                            <li><a href="{{route ('pengembalian.index')}}">Pengembalian</a></li>
                         </ul>
                     </li>
 

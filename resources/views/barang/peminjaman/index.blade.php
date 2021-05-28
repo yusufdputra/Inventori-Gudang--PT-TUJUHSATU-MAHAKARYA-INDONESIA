@@ -172,7 +172,7 @@
   <div class="custom-modal-text">
 
     <div class="text-center">
-      <h4 class="text-uppercase font-bold mb-0">Edit barang</h4>
+      <h4 class="text-uppercase font-bold mb-0">Edit peminjaman barang</h4>
     </div>
     <div class="p-20 text-left">
 
@@ -288,7 +288,7 @@
   <div class="custom-modal-text">
 
     <div class="text-center">
-      <h4 class="text-uppercase font-bold mb-0">Cetak Barang Masuk</h4>
+      <h4 class="text-uppercase font-bold mb-0">Cetak Data Peminjaman Barang</h4>
     </div>
     <div class="p-20 text-left">
       <form class="form-horizontal m-t-20" target="_BLANK" enctype="multipart/form-data" action="{{route('cetak.cetak')}}" method="POST">
@@ -300,7 +300,7 @@
           <label for="">Dari Tanggal</label>
           <div class="col-xs-12">
             <div class="input-group-append">
-              <input type="text" class="form-control datepicker-autoclose" autocomplete="off" name="start_date" id="">
+              <input type="text" class="form-control datepicker-autoclose" placeholder="dd/mm/yyyy" autocomplete="off" name="start_date" >
               <span class="input-group-text"><i class="ti-calendar"></i></span>
             </div>
           </div>
@@ -310,7 +310,7 @@
           <label for="">Sampai Tanggal</label>
           <div class="col-xs-12">
             <div class="input-group-append">
-              <input type="text" class="form-control datepicker-autoclose" autocomplete="off" name="end_date" id="">
+              <input type="text" class="form-control datepicker-autoclose" placeholder="dd/mm/yyyy" autocomplete="off" name="end_date" >
               <span class="input-group-text"><i class="ti-calendar"></i></span>
             </div>
           </div>

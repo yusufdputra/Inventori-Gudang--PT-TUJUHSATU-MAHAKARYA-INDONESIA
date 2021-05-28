@@ -7,6 +7,7 @@ use App\Http\Controllers\CetakController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\RabController;
 use App\Http\Controllers\RabTempController;
 use App\Http\Controllers\RestokController;
@@ -72,18 +73,9 @@ Route::group(['middleware' => ['role:admin|pegawai']], function () {
     Route::POST('/peminjaman/update/', [PeminjamanController::class, 'update'])->name('peminjaman.update');
     Route::POST('/peminjaman/hapus/', [PeminjamanController::class, 'hapus'])->name('peminjaman.hapus');
 
-
-    // barang masuk
-    Route::post('masuk/store', [BarangMasukController::class, 'store'])->name('masuk.store');
-    Route::get('/masuk/edit/{id}', [BarangMasukController::class, 'edit'])->name('masuk/edit');
-    Route::POST('/masuk/update/', [BarangMasukController::class, 'update'])->name('masuk.update');
-    Route::POST('/masuk/hapus/', [BarangMasukController::class, 'hapus'])->name('masuk.hapus');
-
-    // barang keluar
-    Route::post('keluar/store', [BarangKeluarController::class, 'store'])->name('keluar.store');
-    Route::get('/keluar/edit/{id}', [BarangKeluarController::class, 'edit'])->name('keluar/edit');
-    Route::POST('/keluar/update/', [BarangKeluarController::class, 'update'])->name('keluar.update');
-    Route::POST('/keluar/hapus/', [BarangKeluarController::class, 'hapus'])->name('keluar.hapus');
+    // barang pengembalian
+    Route::get('/pengembalian/edit/{id}', [PengembalianController::class, 'edit'])->name('pengembalian/edit');
+    Route::POST('/pengembalian/update/', [PengembalianController::class, 'update'])->name('pengembalian.update');
   
     // kelola restok barang 
     Route::post('restok/store', [RestokController::class, 'store'])->name('restok.store');
@@ -96,8 +88,8 @@ Route::group(['middleware' => ['role:admin|pegawai']], function () {
 Route::group(['middleware' => ['role:pegawai|admin|pimpinan']], function () {  
     // barang peminjaman
     Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
-    // barang keluar
-    Route::get('/keluar', [BarangKeluarController::class, 'index'])->name('keluar.index');
+    // barang pengembalian
+    Route::get('/pengembalian', [PengembalianController::class, 'index'])->name('pengembalian.index');
     // kelola barang index
     Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
     // kelola restok barang 

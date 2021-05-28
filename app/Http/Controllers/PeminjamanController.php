@@ -20,7 +20,10 @@ class PeminjamanController extends Controller
         $title = "Kelola Data Peminjaman Barang ";
 
         $barangs = Barang::all();
-        $peminjaman = Peminjaman::with('barang', 'user')->orderBy('created_at', 'DESC')->get();
+        $peminjaman = Peminjaman::with('barang', 'user')
+        ->whereNull('pengembalian_at')
+        ->orderBy('created_at', 'DESC')
+        ->get();
         return view('barang.peminjaman.index', compact('title', 'peminjaman', 'barangs'));
     }
 
