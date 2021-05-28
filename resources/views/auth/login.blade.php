@@ -6,10 +6,10 @@
 
     <div class="m-t-40 card-box">
         <div class="text-center">
-            <img src="{{asset('adminto/images/brand/sejahtera.png')}}" height="100px" alt="">
+            <img src="{{asset('adminto/images/brand/logo-big.png')}}" height="100px" alt="">
             <div class="text-center">
                 <a href="index.html" class="logo"><span>SI INVENTORI GUDANG</a>
-                <h5 class="text-muted m-t-0 font-600">PT. Sejahtera Mandiri Pekanbaru</h5>
+                <h5 class="text-muted m-t-0 font-600">PT TUJUHSATU MAHAKARYA INDONESIA</h5>
             </div>
         </div>
         <div class="p-20">

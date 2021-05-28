@@ -10,7 +10,7 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\RabController;
 use App\Http\Controllers\RabTempController;
-use App\Http\Controllers\RestokController;
+use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserManagementController;
 use App\Models\Barang;
 use Illuminate\Support\Facades\Auth;
@@ -78,11 +78,11 @@ Route::group(['middleware' => ['role:admin|pegawai']], function () {
     Route::POST('/pengembalian/update/', [PengembalianController::class, 'update'])->name('pengembalian.update');
   
     // kelola restok barang 
-    Route::post('restok/store', [RestokController::class, 'store'])->name('restok.store');
-    Route::get('/restok/edit/{id}', [RestokController::class, 'edit'])->name('restok/edit');
-    Route::POST('/restok/update/', [RestokController::class, 'update'])->name('restok.update');
-    Route::POST('/restok/terima/', [RestokController::class, 'terima'])->name('restok.terima');
-    Route::POST('/restok/hapus/', [RestokController::class, 'hapus'])->name('restok.hapus');
+    Route::post('restok/store', [RequestController::class, 'store'])->name('restok.store');
+    Route::get('/restok/edit/{id}', [RequestController::class, 'edit'])->name('restok/edit');
+    Route::POST('/restok/update/', [RequestController::class, 'update'])->name('restok.update');
+    Route::POST('/restok/terima/', [RequestController::class, 'terima'])->name('restok.terima');
+    Route::POST('/restok/hapus/', [RequestController::class, 'hapus'])->name('restok.hapus');
 });
 
 Route::group(['middleware' => ['role:pegawai|admin|pimpinan']], function () {  
@@ -93,7 +93,7 @@ Route::group(['middleware' => ['role:pegawai|admin|pimpinan']], function () {
     // kelola barang index
     Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
     // kelola restok barang 
-    Route::get('/restok', [RestokController::class, 'index'])->name('restok.index');
+    Route::get('/restok', [RequestController::class, 'index'])->name('restok.index');
     // kelola cetak
     Route::post('/cetak/cetak', [CetakController::class, 'cetak'])->name('cetak.cetak');
 });

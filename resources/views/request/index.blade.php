@@ -4,14 +4,7 @@
 <div class="row">
   <div class="col-12">
     <div class="card-box table-responsive">
-      @role('pegawai')
-      <div class="form-row">
-        <div class="form-group ">
-          <a href="#tambah-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary m-l-10 waves-light  ">Tambah</a>
-        </div>
-
-      </div>
-      @endrole
+   
 
       @if(\Session::has('alert'))
       <div class="alert alert-danger">
@@ -41,23 +34,23 @@
 
         <tbody>
 
-          @foreach ($restok as $key=>$value)
+          @foreach ($request as $key=>$value)
           <tr>
             <td>{{$key+1}}</td>
             <td>{{$value->barang[0]['nama']}}</td>
-            <td>{{$value->permintaan_stok}}</td>
+            <td>{{$value->stok}}</td>
             <td>
-              @if (($value->terpenuhi_stok) == null)
+              @if (($value->terpenuhi) == null)
               Belum Dipenuhi
               @else
 
-              {{$value->terpenuhi_stok}}
+              {{$value->terpenuhi}}
               @endif
             </td>
             <td>{{date('d-M-Y, H:m', strtotime($value['created_at']))}} WIB</td>
 
             @role('admin|pegawai')
-            @if (($value->terpenuhi_stok) == null)
+            @if (($value->terpenuhi) == null)
             <td>
               @role('admin')
               <a href="#terima-modal" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-rounded btn-success btn-sm modal_terima"><i class="mdi mdi-check"></i></a>
@@ -68,7 +61,7 @@
               @endrole
             </td>
             @else
-            <td>-</td>
+            <td>Sudah Terpenuhi</td>
             @endif
             @endrole
 
@@ -306,7 +299,7 @@
         $('#edit_id').val(id)
         $('#edit_id_barang').val(data['id_barang'])
         $('#edit_stok_tersedia').val(data['barang'][0]['stok'])
-        $('#edit_permintaan_stok').val(data['permintaan_stok'])
+        $('#edit_permintaan_stok').val(data['stok'])
       },
       error: function(data) {
         toastr.error('Gagal memanggil data! ')
@@ -328,9 +321,9 @@
         $('#terima_id_barang').val(data['barang'][0]['id'])
         $('#terima_nama_barang').val(data['barang'][0]['nama'])
         $('#terima_stok_sekarang').val(data['barang'][0]['stok'])
-        $('#terima_permintaan_stok').val(data['permintaan_stok'])
+        $('#terima_permintaan_stok').val(data['stok'])
         $('#terima_terpenuhi_stok').attr({
-          "max": data['permintaan_stok']
+          "max": data['stok']
         });
       },
       error: function(data) {

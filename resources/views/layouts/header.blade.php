@@ -7,7 +7,7 @@
   <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
   <meta content="Coderthemes" name="author" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Sistem Informasi Wirehouse Terpadu</title>
+  <title>INVENTORI GUDANG PT TUJUHSATU MAHAKARYA INDONESIA</title>
 
   <link rel="shortcut icon" href="{{asset('adminto/images/brand/logo.png')}}">
 

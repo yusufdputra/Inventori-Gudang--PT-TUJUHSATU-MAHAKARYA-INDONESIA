@@ -109,7 +109,7 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="{{route ('restok.index')}}" class="waves-effect"><i class="mdi mdi-basket-fill"></i> <span> Restok </span> </a>
+                        <a href="{{route ('restok.index')}}" class="waves-effect"><i class="mdi mdi-basket-fill"></i> <span> Request Stok </span> </a>
                     </li>
 
                     @endrole
