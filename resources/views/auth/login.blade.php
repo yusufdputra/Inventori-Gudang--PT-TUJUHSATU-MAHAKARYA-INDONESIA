@@ -8,8 +8,8 @@
         <div class="text-center">
             <img src="{{asset('adminto/images/brand/logo-big.png')}}" height="100px" alt="">
             <div class="text-center">
-                <a href="index.html" class="logo"><span>SI INVENTORI GUDANG</a>
-                <h5 class="text-muted m-t-0 font-600">PT TUJUHSATU MAHAKARYA INDONESIA</h5>
+                <a href="index.html" class="logo"><span style="color: #61372b !important">INVENTORI GUDANG</span></a>
+                <h5 class="text-muted m-t-0 font-600" style="color: #61372b !important">PT TUJUHSATU MAHAKARYA INDONESIA</h5>
             </div>
         </div>
         <div class="p-20">
@@ -45,17 +45,11 @@
 
                 <div class="form-group text-center m-t-30">
                     <div class="col-xs-12">
-                        <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">Log In</button>
+                        <button class="btn btn-success btn-bordred btn-block waves-effect waves-light" type="submit">Log In</button>
                     </div>
                 </div>
 
-                <!-- <div class="form-group m-t-30 m-b-0">
-                        <div class="col-sm-12">
-                            @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
-                            @endif
-                        </div>
-                    </div> -->
+                
 
 
             </form>

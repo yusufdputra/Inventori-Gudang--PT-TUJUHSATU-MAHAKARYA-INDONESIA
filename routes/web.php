@@ -57,8 +57,6 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::POST('/kategori/edit', [KategoriController::class, 'update'])->name('kategori.update');
     Route::POST('/kategori/hapus/', [KategoriController::class, 'hapus'])->name('kategori.hapus');
 
-    
-
     // kelola ajax
     Route::get('/GetBarangByKategori/{id}', [AjaxController::class, 'GetBarangByKategori'])->name('GetBarangByKategori');
 

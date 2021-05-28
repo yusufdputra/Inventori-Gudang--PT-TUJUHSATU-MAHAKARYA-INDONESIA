@@ -162,7 +162,7 @@
       <form class="form-horizontal m-t-20" target="_BLANK" enctype="multipart/form-data" action="{{route('cetak.cetak')}}" method="POST">
         {{csrf_field()}}
 
-        <input type="hidden" value="masuk" name="jenis">
+        <input type="hidden" value="kembali" name="jenis">
 
         <div class="form-group">
           <label for="">Dari Tanggal</label>
