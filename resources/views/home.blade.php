@@ -52,7 +52,7 @@
             @if(!$peminjamans->isEmpty())
             @foreach ($peminjamans as $key=>$value)
             <tr>
-              <td>{{date("d-M-Y H:m ", strtotime(($value->created_at)))}} WIB</td>
+              <td>{{date("d-M-Y H:i ", strtotime(($value->created_at)))}} WIB</td>
               <td>{{$value->barang[0]['nama']}}</td>
               <td><span class="badge badge-success">{{$value->jml_pinjam}}</span></td>
             </tr>

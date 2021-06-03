@@ -65,9 +65,9 @@
           @foreach ($peminjaman AS $key=>$value)
           <tr>
             <td>{{$key+1}}</td>
-            <td>{{date("d-M-Y H:m ", strtotime(($value->created_at)))}} WIB</td>
+            <td>{{date("d-M-Y H:i ", strtotime(($value->created_at)))}} WIB</td>
             @if($value->pengembalian_at != null)
-            <td>{{date("d-M-Y H:m ", strtotime(($value->pengembalian_at)))}} WIB</td>
+            <td>{{date("d-M-Y H:i ", strtotime(($value->pengembalian_at)))}} WIB</td>
             @else
             <td>-</td>
             @endif

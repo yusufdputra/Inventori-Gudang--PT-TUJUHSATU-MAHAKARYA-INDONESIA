@@ -60,9 +60,9 @@
             <td>
 
               @if($value['updated_at'] != null)
-              {{date('d-M-Y, H:m', strtotime($value['updated_at']))}} WIB
+              {{date('d-M-Y, H:i', strtotime($value['updated_at']))}} WIB
               @else
-              {{date('d-M-Y, H:m', strtotime($value['created_at']))}} WIB
+              {{date('d-M-Y, H:i', strtotime($value['created_at']))}} WIB
               @endif
             </td>
 

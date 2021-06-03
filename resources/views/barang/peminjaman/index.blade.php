@@ -68,7 +68,7 @@
           @foreach ($peminjaman AS $key=>$value)
           <tr>
             <td>{{$key+1}}</td>
-            <td>{{date("d-M-Y H:m ", strtotime(($value->created_at)))}} WIB</td>
+            <td>{{date("d-M-Y H:i ", strtotime(($value->created_at)))}} WIB</td>
             <td>{{$value->nama_peminjam}}</td>
             <td>{{$value->barang[0]['nama']}}</td>
             <td>{{$value->estimasi}}</td>
