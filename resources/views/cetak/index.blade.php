@@ -49,8 +49,8 @@
         <img height="60px" src="..\public\adminto\images\brand\logo-big.png" alt="">
       </div>
       <div style="text-align: center; ">
-        <span style="font-size: 24px; font-weight: bold;">PT TUJUHSATU MAHAKARYA INDONESIA</span> <br>
-        <span style="font-size: 18px; font-weight: bold; color: blue; ">{{$header}}</span><br>
+        <span style="font-size: 24px; font-weight: bold; color: #61372b">PT TUJUHSATU MAHAKARYA INDONESIA</span> <br>
+        <span style="font-size: 18px; font-weight: bold; color: #61372b ">{{$header}}</span><br>
         <br>
         <hr>
       </div>
@@ -59,40 +59,40 @@
     </div>
     <div id="body">
 
-      
+
       <div style="font-size: 12px;">
-        <p >Tanggal {{date('d-M-Y', strtotime($start))}} s/d {{date('d-M-Y', strtotime($end))}} </p>
+        <p>Tanggal {{date('d-M-Y', strtotime($start))}} s/d {{date('d-M-Y', strtotime($end))}} </p>
 
         <div style="font-size: 12px;">
           <table style="width: 100%; border-style: solid !important; border-collapse: collapse; " border="1">
             <thead>
               <tr>
                 <th style="padding: 5px;">No.</th>
-                <th>Tanggal</th>
+                <th>Tanggal Peminjaman</th>
+                <th>Nama Pegawai</th>
                 <th>Nama Barang</th>
-                <th>Stok Keluar</th>
-                <th>Lokasi</th>
-                <th>Nama Pengambil</th>
-                <th>Fungsi</th>
+                <th>Estimasi Peminjaman (Hari)</th>
+                <th>Jumlah Peminjaman</th>
+                <th>Fungsi Peminjaman</th>
               </tr>
             </thead>
             <tbody style="text-align: center !important">
-           
+
               @foreach($barang as $key => $value)
-             
+
               <tr>
                 <td style="padding: 5px;">{{$key+1}}</td>
                 <td>{{date('d-M-Y', strtotime($value->created_at))}} </td>
+                <td>{{$value->nama_peminjam}}</td>
                 <td>{{$value->barang[0]['nama']}}</td>
-                <td>{{$value->stok_keluar}}</td>
-                <td>{{$value->lokasi}}</td>
-                <td>{{$value->pengambil}}</td>
+                <td>{{$value->estimasi}}</td>
+                <td>{{$value->jml_pinjam}}</td>
                 <td>{{$value->fungsi}}</td>
               </tr>
 
               @endforeach
 
-            
+
 
             </tbody>
             </td>
@@ -106,18 +106,17 @@
               Pekanbaru, {{date('d-M-Y', strtotime(now()))}}
               <br>
               <br>
+              <br>
+              <br>
               Hormat Kami
               <br>
-              PT. Sejahtera Mandiri Pekanbaru
+              PT. TUJUHSATU MAHAKARYA INDONESIA
             </strong>
           </p>
 
         </div>
 
 
-      </div>
-      <div id="footer">
-        <img height="60px" src="..\public\adminto\images\brand\footer.jpg" alt="">
       </div>
     </div>
 

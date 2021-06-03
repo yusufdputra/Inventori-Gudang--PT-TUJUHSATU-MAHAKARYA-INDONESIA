@@ -20,7 +20,7 @@ class CetakController extends Controller
         $date = str_replace('/', '-', $request->start_date);
         $start = date('Y-m-d', strtotime($date));
         $date2 = str_replace('/', '-', $request->end_date);
-        $end = date('Y-m-d h:m:s', strtotime($date2));
+        $end = date('Y-m-d', strtotime($date2));
 
         
         if ($request->jenis == 'pinjam') {
